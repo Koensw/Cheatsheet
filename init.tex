@@ -1,0 +1,53 @@
+\section{Info}
+\subsection{Template}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+#include <bits/stdc++.h>
+
+void test(){
+	//read
+	//reset
+}
+int main(){
+	//initialize
+	int T;
+	std::cin >> T;
+	while(T--) test();
+}
+\end{minted}
+
+\subsection{Debug compile options}
+\begin{verbatim}
+g++ -Wall -Wextra -pedantic -g -std=c++11 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op 
+-Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -fsanitize=address -fsanitize=undefined 
+-fstack-protector
+\end{verbatim}
+
+\subsection{Complexity}
+\begin{tabular}[pos]{p{3cm}p{5cm}p{8cm}}
+\textbf{Value} & \textbf{Complexity} & \textbf{Algorithms}\\
+$n<10^{18}$ & O(1), O(polylog(N)) & Binary search, Functions (math)\\
+$n<10^9$ & O(sqrt(N)) & Prime check, factorization\\
+$n<10^6$ & O(N), O(N log(N)) & Greedy, Sorting, Binary search + Greedy, Divide and conquer, 1D Dynamic programming\\
+$n<10^3$ & O($N^2$), O($N^2$ log(N)) & 2D Dynamic programming, All-pair shortest path\\
+$n<100$ & O($N^3$) & Max-flow, Various unoptimized traversals\\
+$n<20$ & O($2^N$) & Combinations\\
+$n<16$ & O(N $2^N$), O($N^2 2^N$) & Bitmask dynamic programming\\
+$n<10$ & O($N!$) & Permutations\\
+\end{tabular}
+
+\subsection{Common errors}
+\begin{itemize}
+\item Loop bounds (especially with DP)
+\item Array bounds (make slightly bigger)
+\item Initialization (init and reset)
+\item Incorrect output format
+\item Wrong nesting
+\item Precision (use epsilon)
+\item Overflow (use 64-bit when in doubt)
+\item Invalid expressions (divide by zero, segfault)
+\item Index offset
+\item Rounding (floor, ceil or normal)
+\item Read complete input
+\item Boundary cases
+\item Wrong variable, copying mistakes, etc
+\end{itemize} 

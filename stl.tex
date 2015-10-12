@@ -1,0 +1,116 @@
+\section{STL}
+\subsection{I/O}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+std::ios::sync_with_stdio(false); //speedup IO (dont combine with printf/scanf)
+std::cin.ignore(n); //ignore n characters before continue
+std::getline(std::cin, s); //reads whole line into string
+std::cin >> std::noskipws; //dont skip whitespace
+std::cout << std::fixed; //use fixed-point notation
+std::cout << std::setprecision(n); //set the precision to n decimals
+\end{minted}
+\subsection{String}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+//read a line
+std::string s;
+std::getline(std::cin, s);
+//string split
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+//substring
+str.substr(pos, LENGTH); //till end if LENGTH is empty
+//string find
+str.find("substring") //return std::string::npos if not found, else position
+\end{minted}
+
+\subsection{Containers}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+std::vector<int> vec;
+//sort from small to large
+bool cmp(int a, int b){
+    return a < b;
+}
+std::sort(vec.begin(), vec.end(), cmp); 
+std::sort(vec.begin(), vec.end(), std::less<int>()); //use std::greater<int>() for large to small and std::less<int>() for small to large
+std::find(vec.begin(), vec.end(), NEEDLE); //use .find() if avaible (map/set)
+std::count(vec.begin(), vec.end(), NEEDLE); //use .find() if available (map/set)
+//find union/intersection/difference -- both need to be SORTED already
+std::vector<int> tmp(vec.size()+vec2.size());
+std::set_intersection(vec.begin(), vec.end(), vec2.begin(), vec2.end(), tmp.begin());
+std::set_union(vec.begin(), vec.end(), vec2.begin(), vec2.end(), tmp.begin());
+std::set_difference(vec.begin(), vec.end(), vec2.begin(), vec2.end(). tmp.begin());
+//filter unique elements
+auto last = std::unique(vec.begin(), vec.end());
+vec.erase(last, v.end());
+\end{minted}
+
+\subsection{String streams}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+//c-style for complex parsing
+int in;
+sscanf(str.c_str(),"%d",&in)
+//convert number to string -- itoa()
+std::ostringstream os;
+os << (int) i;
+os.str();
+//convert string to number(s) -- atoi() or atol()
+std::istringstream is(str);
+is >> i;
+\end{minted}
+
+\subsection{Constants}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+INT_MIN
+INT_MAX
+LLONG_MIN
+LLONG_MAX
+PI //defined in header
+EPS //defined in header
+\end{minted}
+
+\subsection{Math}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+ceil(a); //round up
+floor(a); //round down
+round(a); //round nearest
+atan2(a, b); //atan with two parameters
+frac_part = modf(d, intpart); //split up in parts (int_part is a double!)
+std::__gcd(a, b); //greatest common divisor a, b
+\end{minted}
+
+\subsection{Permutations}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos,label=O($N!$)]{c++}
+std::vector arr;
+std::sort(arr.begin(), arr.end());
+do {
+   //work with permutation
+} while (next_permutation(arr.begin(),arr.end));
+\end{minted}
+
+\subsection{Binary search}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos,label=O(log(N))]{c++}
+std::multimap<int, int> m;
+m.lower_bound(i); //first element equal or higher then i
+m.higher_bound(i); //first element higher then i
+std::pair<auto iter, auto iter> p = m.equal_range(i); //get all with equal value
+\end{minted} 
+
+\subsection{Bit twiddling hacks}
+\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+in |= (1 << a); //enable bit at position a
+in ^= (1 << a); //toggle bit at position a
+if(in & (1 << a)); //check bit at position a
+//get last bit set (least signifcant)
+c = (b & -b) 
+//ll for the long long versions
+__builtin_popcount(in); //count the amount of bits set
+__builtin_ffs(in); //give the least signifcant index + 1 in binary representation
+__builtin_clz(in); //returns the number of leading zeros
+__builtin_ctz; //give number of trailing zeros
+\end{minted}
