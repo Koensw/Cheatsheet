@@ -10,6 +10,6 @@ Cheatsheet for ICPC competitions. Contains C++ implementations of various algori
 ### FIX ###
 
 ### NEW ###
-* LIS
 
 ### MAYBE ###
+* more math
