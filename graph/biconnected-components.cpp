@@ -1,14 +1,16 @@
 std::vector<int> biconnected(int r){
-    std::vector<int> res;
+    for(int i=0; i<MAXN; ++i) eit[i] = nd[i].ed.begin();
+    std::vector<int> res; //result nodes
     
-    std::stack<int> s;
-    s.push(r);
+    std::stack<int> st; //stack
+    st.push(r);
     dpt[r] = 0;
-    while(!s.empty()){
-        int c = s.top();
-        s.pop();
+    while(!st.empty()){
+        int c = st.top();
+        st.pop();
         
-        if(lit[c] == nd[c].ed.end()){
+        //add to result
+        if(eit[c] == nd[c].ed.end()){
             int cnt = 0;
             for(auto iter = nd[c].ed.begin(); iter != nd[c].ed.end(); ++iter){ 
                 int n = (*iter)->t;
@@ -23,10 +25,13 @@ std::vector<int> biconnected(int r){
             if(dpt[c] == 0 && cnt >= 2) res.push_back(c); //root
             continue;
         }
-        if(low[c] == INT_MAX) low[c] = dpt[c];
-        s.push(c);
         
-        auto iter = lit[c];
+        //init
+        if(low[c] == INT_MAX) low[c] = dpt[c];
+        
+        //loop through children (non-recursive so we should come back to this node)
+        st.push(c);
+        auto iter = eit[c];
         for(; iter!=nd[c].ed.end(); ++iter){
             int n = (*iter)->t;
             if(dpt[n] != -1){
@@ -34,11 +39,11 @@ std::vector<int> biconnected(int r){
                 else if(dpt[n] > dpt[c]) low[c] = std::min(low[c], low[n]); // forward edge
             }else{
                 dpt[n] = dpt[c]+1;
-                s.push(n);
+                st.push(n);
                 break;
             }
         }
-        lit[c] = iter;
+        eit[c] = iter;
     }
     return res;
 }

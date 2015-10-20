@@ -1,3 +1,4 @@
+//trick also works with matrices
 long long expmod(long long a, long long b, long long m){
     long long res = 1;
     a = a%m;

@@ -1,7 +1,7 @@
 //returns list of factors and how many times they occur
 std::vector<std::pair<int, int> > factors(long long n){
     std::vector<std::pair<int, int> > v;
-    for(long long i=0; i<prms.size(); ++i){
+    for(size_t i=0; i<prms.size(); ++i){
         long long k = 0;
         while((n % prms[i]) == 0){
                 ++k;

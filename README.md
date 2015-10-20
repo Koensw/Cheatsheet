@@ -8,15 +8,8 @@ Cheatsheet for ICPC competitions. Contains C++ implementations of various algori
 
 ## TODO ##
 ### FIX ###
-* area
-* complexity
 
 ### NEW ###
-* Knapsack
 * LIS
-* Bipartite matching
-* STL formatting
 
-### IMPROVE ###
-* KMP
-* Suffix array
+### MAYBE ###

@@ -1,5 +1,5 @@
 //deterministic until 2^64 -- needs long long expmod probably!
-bool is_prime_fast(long long n){
+bool miller_rabin(long long n){
     long long prms[12] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
     
     long long s = 0, d = n-1;

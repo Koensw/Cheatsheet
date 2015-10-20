@@ -1,37 +1,38 @@
 struct Edge{
     //add constructor if convenient
-    int f;
-    int t;
-    int d;
+    int f; //from
+    int t; //to
+    int d; //distance
 
-    int cap;
-    int flw;
+    int cap; //capacity (max flow)
+    int flw; //flow (max flow)
+    Edge *rev; //reverse edge (in case undirected)
     
-    Edge *rev;
+    bool use; //edge is used (euler-tour) 
 };
 
 struct Node{
-    int n;
-    
-    std::vector<Edge*> ed;
+    int n; //index
+    std::vector<Edge*> ed; //adjadency list
 };
 
-Node nd[MAXN];
-int dis[MAXN];
+Node nd[MAXN]; //nodes
+int dis[MAXN]; //distance to node
 
-int dpt[MAXN];
-int low[MAXN];
-std::vector<Edge*>::iterator lit[MAXN];
+int dpt[MAXN]; //depth node (SCC/bridge)
+int low[MAXN]; //low-link node (SCC/bridge)
+//next edge of a node, used to keep track of next path in a non-recursive dfs
+std::vector<Edge*>::iterator eit[MAXN]; 
 
-Edge *frm[MAXN];
-bool vis[MAXN];
+Edge *frm[MAXN]; //edge used to node
+bool vis[MAXN]; //visited
 
-int incnt[MAXN];
+int incnt[MAXN]; //active indegree count (topo-sort)
 
 void init(){
     for(int i=0; i<MAXN; ++i){
         nd[i].n = i;
-        for(int j=0; j<nd[i].ed.size(); ++j) delete nd[i].ed[j];
+        for(size_t j=0; j<nd[i].ed.size(); ++j) delete nd[i].ed[j];
         nd[i].ed.clear();
         dis[i] = INT_MAX;
         dpt[i] = -1;

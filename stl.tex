@@ -7,6 +7,8 @@ std::getline(std::cin, s); //reads whole line into string
 std::cin >> std::noskipws; //dont skip whitespace
 std::cout << std::fixed; //use fixed-point notation
 std::cout << std::setprecision(n); //set the precision to n decimals
+std::cout << std::setw(n); //set the length each output will contain
+std::cout << std::setfill(c); //set the char to fill the remaining chars from above
 \end{minted}
 \subsection{String}
 \begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
@@ -26,7 +28,7 @@ std::vector<std::string> split(const std::string &s, char delim) {
 //substring
 str.substr(pos, LENGTH); //till end if LENGTH is empty
 //string find
-str.find("substring") //return std::string::npos if not found, else position
+str.find("substring") //return std::string::npos if not found, else position first letter
 \end{minted}
 
 \subsection{Containers}

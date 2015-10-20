@@ -1,10 +1,11 @@
-//use bfs on graph with no guarenteed integers
+//bfs is safer (unless path length is limited and integer)
+//for min-cost replace by Bellman-Ford or Dijkstra with potentials
 int dfs(int a, int b){
     if(a == b) return INT_MAX;
     if(vis[a]) return 0;
     vis[a] = true;
     
-    for(int i=0; i<nd[a].ed.size(); ++i){
+    for(size_t i=0; i<nd[a].ed.size(); ++i){
         Edge *e = nd[a].ed[i];
         
         int cap = (e->cap-e->flw)+e->rev->flw;
@@ -26,9 +27,8 @@ int max_flow(int a, int b){
     while(true){
         for(int i=0; i<2000; ++i) vis[i] = false;
         int f = dfs(a, b);
-        mf += f;
-        
         if(f == 0) break;
+        mf += f;
         
         int lst = b;
         while(frm[lst]){

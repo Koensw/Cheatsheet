@@ -1,4 +1,4 @@
-int bfs(int F){
+void bfs(int F){
     for(int i=0; i<MAXN; ++i) dis[i] = INT_MAX;
     std::queue<int> q; //replace by stack for dfs
     dis[F] = 0;

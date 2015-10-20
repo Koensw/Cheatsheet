@@ -35,8 +35,8 @@ void pushd(Node *n){
     if(!n->hupd) return;
     n->l->val = n->upd; //update
     n->r->val = n->upd; //update
-    n->l->upd = n->upd; //split (care old updates)
-    n->r->upd = n->upd; //split (care old updates)
+    n->l->upd = n->upd; //split (move old updates)
+    n->r->upd = n->upd; //split (move old updates)
     n->l->hupd = true;
     n->r->hupd = true;
     n->hupd = false;

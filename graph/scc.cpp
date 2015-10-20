@@ -1,14 +1,15 @@
 int tarjan_ind = 0;
 std::vector<std::vector<int> > tarjan(int r){
-    std::vector<std::vector<int> > res;
+    for(int i=0; i<MAXN; ++i) eit[i] = nd[i].ed.begin();
+    std::vector<std::vector<int> > res; //result components
     
-    std::stack<int> s;
-    std::stack<int> cp;
-    s.push(r);
+    std::stack<int> st; //stack
+    std::stack<int> cp; //current component
+    st.push(r);
     dpt[r] = ++tarjan_ind;
-    while(!s.empty()){
-        int c = s.top();
-        s.pop();
+    while(!st.empty()){
+        int c = st.top();
+        st.pop();
         
         //init
         if(low[c] == INT_MAX){
@@ -17,7 +18,7 @@ std::vector<std::vector<int> > tarjan(int r){
         }
         
         //add to result
-        if(lit[c] == nd[c].ed.end()){
+        if(eit[c] == nd[c].ed.end()){
             if(low[c] == dpt[c]){
                 res.push_back(std::vector<int>());
                 while(true){
@@ -31,9 +32,9 @@ std::vector<std::vector<int> > tarjan(int r){
             continue;
         }
         
-        //compute scc
-        s.push(c);
-        auto iter = lit[c];
+        //loop through children (non-recursive so we should come back to this node)
+        st.push(c);
+        auto iter = eit[c];
         for(; iter!=nd[c].ed.end(); ++iter){
             int n = (*iter)->t;
             if(dpt[n] != -1){
@@ -41,11 +42,11 @@ std::vector<std::vector<int> > tarjan(int r){
                 else if(dpt[n] > dpt[c]) low[c] = std::min(low[c], low[n]); // forward edge
             }else{
                 dpt[n] = ++tarjan_ind;
-                s.push(n);
+                st.push(n);
                 break;
             }
         }
-        lit[c] = iter;
+        eit[c] = iter;
     }
     return res;
 }

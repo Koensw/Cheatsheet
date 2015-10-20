@@ -1,25 +1,14 @@
-//CLEANUP
-
-int edit_distance(char *A, char *B) {
-    int n = (int)strlen(A), m = (int)strlen(B);
-    int i, j, table[20][20];
-    
-    memset(table, 0, sizeof table);
-    // insert/delete = -1 point
-    for (i = 1; i <= n; i++)
-        table[i][0] = i * -1;
-    for (j = 1; j <= m; j++)
-        table[0][j] = j * -1;
-    
-    for (i = 1; i <= n; i++){
-        for (j = 1; j <= m; j++) {
-            // match = 2 points, mismatch = -1 point
-            table[i][j] = table[i - 1][j - 1] + (A[i - 1] == B[j - 1] ? 2 : -1); // cost for match or mismatches
-            // insert/delete = -1 point
-            table[i][j] = std::max(table[i][j], table[i - 1][j] - 1); // delete
-            table[i][j] = std::max(table[i][j], table[i][j - 1] - 1); // insert
+int dp[MAXN][MAXN]; //edit distance dp table
+inline int edit_distance(std::string a, std::string b){
+    dp[0][0] = 0;
+    for(size_t i=1; i<=a.size(); ++i) dp[i][0] = i;
+    for(size_t j=1; j<=b.size(); ++j) dp[0][j] = j;
+    for(size_t i=1; i<=a.size(); ++i){
+        for(size_t j=1; j<=b.size(); ++j){
+            dp[i][j] = std::min(dp[i][j-1], dp[i-1][j])+1; //add character: +1
+            if(a[i-1] == b[j-1]) dp[i][j] = std::min(dp[i][j], dp[i-1][j-1]); //same character: no cost
+            else dp[i][j] = std::min(dp[i][j], dp[i-1][j-1]+1); //replace character +1
         }
     }
-    
-    return 0;
+    return dp[a.size()][b.size()];
 }

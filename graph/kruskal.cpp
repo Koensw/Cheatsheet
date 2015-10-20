@@ -5,7 +5,7 @@ std::vector<Edge*> kruskal(std::vector<Edge*> &edg){
     std::vector<Edge*> vec;
     
     std::sort(edg.begin(), edg.end(), cmp);
-    for(int i=0; i<edg.size(); ++i){
+    for(size_t i=0; i<edg.size(); ++i){
         int a = find(edg[i]->f);
         int b = find(edg[i]->t);
         if(a != b){

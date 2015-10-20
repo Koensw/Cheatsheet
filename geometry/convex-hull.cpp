@@ -11,7 +11,7 @@ std::vector<Vec> convex_hull(std::vector<Vec> v){ //DONT ADD FIRST POINT AGAIN
     if(v.size() <= 3) return v;
     
     int s = 0;
-    for(int i=1; i<v.size(); ++i){
+    for(size_t i=1; i<v.size(); ++i){
         if(v[i].y+EPS < v[s].y || (fabs(v[i].y - v[s].y) < EPS && v[i].x < v[s].x)) s = i;
     }
     
@@ -20,9 +20,9 @@ std::vector<Vec> convex_hull(std::vector<Vec> v){ //DONT ADD FIRST POINT AGAIN
     sort(++v.begin(), v.end(), angle_cmp);
     
     ans.push_back(v.back()); ans.push_back(v[0]); ans.push_back(v[1]);
-    int i = 2;
+    size_t i = 2;
     while(i < v.size()){
-        int j = ans.size()-1;
+        size_t j = ans.size()-1;
         if(ccw(ans[j-1], Line(ans[j], v[i]))) ans.push_back(v[i++]);
         else ans.pop_back();
     }

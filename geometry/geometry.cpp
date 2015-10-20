@@ -7,6 +7,7 @@
 #include "distance.cpp"
 #include "convex-hull.cpp"
 #include "intersect.cpp"
+#include "misc.cpp"
 
 int main(){
     //add tests
