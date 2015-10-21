@@ -11,6 +11,7 @@
 \usepackage{spverbatim}
 \usepackage{inputenc}
 \usepackage{minted}
+\usepackage{multicol}
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[l]{TU Eindhoven}
@@ -19,15 +20,14 @@
 \pagestyle{fancy}
 
 \begin{document}
-\section*{ICPC Cheatsheet - We are trying to have}
-
+\setcounter{tocdepth}{1}
 \makeatletter
 \@starttoc{toc}
 \makeatother
 
 \input{init}
 
-\newpage
+\onecolumn
 \input{stl}
 
 \input{structures}
