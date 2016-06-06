@@ -6,8 +6,8 @@ bool aug(int n) {
     for (size_t i = 0; i < nd[n].ed.size(); i++) {
         Edge *e = nd[n].ed[i];
         //try match with edge (if available or previous can be rematched) 
-        if (mtch[i] == -1 || aug(mtch[e->t])) { 
-            mtch[i] = n; 
+        if (mtch[e->t] == -1 || aug(mtch[e->t])) { 
+            mtch[e->t] = n; 
             return true;
         }
     }
