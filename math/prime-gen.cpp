@@ -7,6 +7,6 @@ void init_prms(){
     for(long long i=2; i<MAXN; ++i){
         if(!is_prm[i]) continue;
         prms.push_back(i);
-        for(long long j=2*i; j<MAXN; j+=i) is_prm[j] = false;
+        for(long long j=i*i; j<MAXN; j+=i) is_prm[j] = false;
     }
 }

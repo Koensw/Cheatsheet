@@ -25,7 +25,7 @@ int max_flow(int a, int b){
     
     frm[a] = 0;
     while(true){
-        for(int i=0; i<2000; ++i) vis[i] = false;
+        for(int i=0; i<MAXN; ++i) vis[i] = false;
         int f = dfs(a, b);
         if(f == 0) break;
         mf += f;
