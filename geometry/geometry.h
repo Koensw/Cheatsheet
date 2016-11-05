@@ -21,6 +21,9 @@ struct Vec{
 Vec operator+(const Vec &a, const Vec &b){
     return Vec(a.x+b.x, a.y+b.y, a.z+b.z);
 }
+Vec operator-(const Vec &a, const Vec &b){
+    return Vec(a.x-b.x, a.y-b.y, a.z-b.z);
+}
 Vec operator*(const double d, Vec b){
     return Vec(d*b.x, d*b.y, d*b.z);
 }
@@ -54,9 +57,16 @@ double angle(Vec p, Line l){ //return the angle between the line and the point
     Vec c(l.b, p);
     return acos(dot(c, l.d)/std::sqrt(len_sq(c)*len_sq(l.d)));
 }
-bool colineair(Vec p, Line l){ //returns if a point is on a line
-    return fabs(cross(Vec(l.b, p), l.d)) < EPS;
-}
 double ccw(Vec p, Line l){ //return true if p is left of l
     return cross(Vec(l.b, p), l.d) < 0;
+}
+
+bool colinear(Line l, Vec p){ //check if a point is on a line (NOT segment)
+    return fabs(cross(Vec(l.b, p), l.d)) < EPS;
+}
+bool in_segment(Line l, Vec p){ //check if in segment (NOT if on line)
+    Vec b = l.b;
+    Vec e = l.b+l.d;
+    return (std::min(b.x,e.x)-EPS <= p.x && p.x <= std::max(b.x,e.x)+EPS) &&
+           (std::min(b.y,e.y)-EPS <= p.y && p.y <= std::max(b.y,e.y)+EPS);
 }

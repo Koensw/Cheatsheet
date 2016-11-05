@@ -1,6 +1,6 @@
 /* TEST THESE */
 
-bool inPolygon(Vec pt, const std::vector<Vec> &v){//ADD FIRST POINT AGAIN!
+bool inPolygon(Vec pt, const std::vector<Vec> &v){ //ADD FIRST POINT AGAIN!
     double sum = 0.0;
     for(size_t i=0; i<v.size()-1; ++i){
         if(ccw(v[i+1], fromPoints(pt, v[i]))){ //extend this to handle border
@@ -10,7 +10,7 @@ bool inPolygon(Vec pt, const std::vector<Vec> &v){//ADD FIRST POINT AGAIN!
     return fabs(fabs(sum) - 2*PI) < EPS;
 }
 
-Vec centroid(const std::vector<Vec> &v){//ADD FIRST POINT AGAIN!
+Vec centroid(const std::vector<Vec> &v){ //ADD FIRST POINT AGAIN!
     Vec ans;
     for(size_t i=0; i<v.size()-1; ++i){
         double spc = v[i].x*v[i+1].y-v[i+1].x*v[i].y;
@@ -30,7 +30,7 @@ double radiusCircumCircle(double ab, double bc, double ca){
     return ab*bc*ca/(4.0*areaCircle(ab, bc, ca));
 }
 
-std::pair<int, Vec> inCircleTriangle(Vec pa, Vec pb, Vec pc){
+std::pair<int, Vec> inCircleTriangle(Vec pa, Vec pb, Vec pc){ //returns radius and center
     double r = radiusInCircle(len(Vec(pa, pb)), len(Vec(pb, pc)), len(Vec(pa, pc)));
     if(fabs(r) < EPS) return std::make_pair(r, Vec());
     

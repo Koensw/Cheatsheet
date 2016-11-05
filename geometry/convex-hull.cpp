@@ -2,7 +2,7 @@ Vec pivot(0, 0); //will contain the point that is used as pivot
 
 bool angle_cmp(Vec p1, Vec p2){
     Line l = Line(pivot, Vec(pivot, p2));
-    if(colineair(p1, l)) return dist(pivot, p1) < dist(pivot, p2);
+    if(colinear(l, p1)) return dist(pivot, p1) < dist(pivot, p2);
     return !ccw(p1, l);
 }
 
