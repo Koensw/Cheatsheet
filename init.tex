@@ -1,25 +1,28 @@
 \section{Init}
-\subsection{Template}
-\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
-#include <bits/stdc++.h>
+%\subsection{Template}
+%\begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
+%#include <bits/stdc++.h>
+%
+%void test(){
+%
+%}
+%int main(){
+%	//initialize
+%	int T;
+%	std::cin >> T;
+%	while(T--) test();
+%}
+%\end{minted}
 
-void test(){
-
-}
-int main(){
-	//initialize
-	int T;
-	std::cin >> T;
-	while(T--) test();
-}
-\end{minted}
-
-\subsection{Debug compile options}
+\subsection{Debug}
 \begin{verbatim}
 g++ -Wall -Wextra -pedantic -g -std=c++11 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op 
 -Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -fsanitize=address -fsanitize=undefined 
 -fstack-protector
 \end{verbatim}
+
+\subsection{Grader}
+\inputminted[frame=single,framesep=3pt,breaklines=true,tabsize=2,linenos]{python}{other/grader.py}
 
 \subsection{Complexity}
 \begin{tabular}[pos]{p{3cm}p{5cm}p{8cm}}
