@@ -12,15 +12,12 @@ std::cout << std::setfill(c); //set the char to fill the remaining chars from ab
 \end{minted}
 \subsection{String}
 \begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos]{c++}
-//read a line
-std::string s;
-std::getline(std::cin, s);
 //string split
 std::vector<std::string> split(const std::string &s, char delim) {
     std::vector<std::string> elems;
-    std::stringstream ss(s);
+    std::stringstream stream(s);
     std::string item;
-    while (std::getline(ss, item, delim)) {
+    while (std::getline(stream, item, delim)) {
         elems.push_back(item);
     }
     return elems;
@@ -50,6 +47,8 @@ std::set_difference(vec.begin(), vec.end(), vec2.begin(), vec2.end(). tmp.begin(
 //filter unique elements
 auto last = std::unique(vec.begin(), vec.end());
 vec.erase(last, v.end());
+//get median (or other nth element in O(N))
+std::nth_element(v.begin(), v.begin() + v.size()/2, v.end());
 \end{minted}
 
 \subsection{String streams}
@@ -57,13 +56,10 @@ vec.erase(last, v.end());
 //c-style for complex parsing
 int in;
 sscanf(str.c_str(),"%d",&in)
-//convert number to string -- itoa()
-std::ostringstream os;
-os << (int) i;
-os.str();
-//convert string to number(s) -- atoi() or atol()
-std::istringstream is(str);
-is >> i;
+//convert number to string
+std::to_string(str)
+//convert string to number(s)
+std::stoi(in) //stoll for long long
 \end{minted}
 
 \subsection{Constants}
@@ -81,7 +77,7 @@ EPS //defined in header
 ceil(a); //round up
 floor(a); //round down
 round(a); //round nearest
-atan2(a, b); //atan with two parameters
+atan2(a, b); //arctan with two parameters
 frac_part = modf(d, intpart); //split up in parts (int_part is a double!)
 std::__gcd(a, b); //greatest common divisor a, b
 \end{minted}
@@ -91,13 +87,14 @@ std::__gcd(a, b); //greatest common divisor a, b
 std::vector arr;
 std::sort(arr.begin(), arr.end());
 do {
-   //work with permutation
+   //do something with permutation
 } while (next_permutation(arr.begin(),arr.end));
 \end{minted}
 
-\subsection{Binary search}
+\subsection{Binary search trees}
 \begin{minted}[frame=single,framesep=3pt,tabsize=2,breaklines=true,linenos,label=O(log(N))]{c++}
-std::multimap<int, int> m;
+std::unordered_set<int, int> us; //hash table allow retrieval in O(1) -- also unordered_map 
+std::multimap<int, int> m; //multimap can save values multiple times
 m.lower_bound(i); //first element equal or higher then i
 m.higher_bound(i); //first element higher then i
 std::pair<auto iter, auto iter> p = m.equal_range(i); //get all with equal value
