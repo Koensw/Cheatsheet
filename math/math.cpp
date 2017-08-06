@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 #define MAXN 1000
 
+#define PI (2*std::acos(0.0))
+#define EPS 1e-9
+
 #include "prime-gen.cpp"
 #include "combinations.cpp"
 #include "expmod.cpp"

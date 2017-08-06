@@ -2,7 +2,7 @@ long long R; //number of rows
 long long C; //number of columns excluding result (which is thus aug[i][C])
 double aug[MAXN][MAXN];
 double ans[MAXN];
-void gaussian_elimination() {
+bool gaussian_elimination() {    
     // incomplete system
     if(R < C) return false;
     
@@ -15,10 +15,10 @@ void gaussian_elimination() {
         // swap this pivot row, reason: minimize floating point error
         for (int k = i; k <= C; k++) std::swap(aug[i][k], aug[l][k]);
         // the actual forward elimination phase
-        for (int j = i + 1; j < R; j++)
+        for (int j = i + 1; j < R; j++) {
             if(std::fabs(aug[i][i]) < EPS) return false;
             for (int k = C; k >= i; k--) aug[j][k] -= aug[i][k] * aug[j][i] / aug[i][i];
-                            
+        }
     }
     
     // check valid result
